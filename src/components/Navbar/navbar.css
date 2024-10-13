@@ -1,0 +1,10 @@
+
+.no-content-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no-content-page{
+  color: #B3B3B3;
+  font-size: 1.5rem;
+}
