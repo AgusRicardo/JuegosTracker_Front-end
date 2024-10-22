@@ -1,0 +1,4 @@
+.container-dashboard {
+  display: flex;
+  flex-flow: row;
+}

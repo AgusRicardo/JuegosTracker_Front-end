@@ -1,0 +1,9 @@
+[
+  { "name": "Home", "href": "/dashboard/", "img": "https://cdn-icons-png.flaticon.com/512/2/2144.png", "current": false },
+  { "name": "Steam", "href": "/dashboard/steam", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Steam_Logo.png", "current": false },
+  { "name": "Epic Games", "href": "/dashboard/epic-games", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Epic_Games_logo.png", "current": false },
+  { "name": "Xbox", "href": "/dashboard/xbox", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/2048px-Xbox_one_logo.svg.png", "current": false },
+  { "name": "Gog", "href": "/dashboard/gog-com", "img": "https://upload.wikimedia.org/wikipedia/commons/d/de/GOG.com_Logo.png", "current": false },
+  { "name": "Prime Gaming", "href": "/dashboard/prime-gaming", "img": "https://img.icons8.com/fluent/600/000000/prime-gaming.png", "current": false },
+  { "name": "Itch", "href": "/dashboard/itch", "img": "https://static-00.iconduck.com/assets.00/itch-io-icon-2048x2048-6n1nulpw.png", "current": false }
+]
