@@ -9,9 +9,7 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navbar = () => {
-  
-
+const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
   return (
     <div className="min-h-screen flex">
       <Disclosure as="nav" className="bg-gray-800 flex flex-col">
@@ -22,6 +20,7 @@ const Navbar = () => {
                 <NavLink 
                   key={item.name} 
                   to={item.href}
+                  onClick={() => onMenuClick(item.name)} 
                   className={({ isActive }) =>
                     classNames(
                       isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
