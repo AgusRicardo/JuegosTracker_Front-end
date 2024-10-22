@@ -16,11 +16,11 @@ function App() {
         <Routes>
           {/* Rutas públicas */}
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/*" element={<Login />} />
 
           {/* Rutas privadas */}
           <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/*" element={<Dashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
