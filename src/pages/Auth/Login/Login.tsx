@@ -1,5 +1,30 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom"
+import { auth } from "../../../config/firebase";
+import { useState } from "react";
 
 const Login = () => {
+  const [email, setemail] = useState<string>("")
+  const [password, setpassword] = useState<string>("")
+
+  const navigate = useNavigate();
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setemail(e.target.value)
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setpassword(e.target.value)
+  }
+
+  const handleSignUp = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      navigate('/dashboard')
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <>
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -22,6 +47,7 @@ const Login = () => {
                 type="email"
                 required
                 autoComplete="email"
+                onChange={handleEmailChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -32,11 +58,6 @@ const Login = () => {
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
-              <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                  Forgot password?
-                </a>
-              </div>
             </div>
             <div className="mt-2">
               <input
@@ -45,14 +66,22 @@ const Login = () => {
                 type="password"
                 required
                 autoComplete="current-password"
+                onChange={handlePasswordChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
+            <a href="#" 
+            className="font-semibold text-indigo-600 hover:text-indigo-500"
+            onClick={() => navigate('/signUp')}
+            >
+              Create new account
+            </a>
 
           <div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSignUp}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in

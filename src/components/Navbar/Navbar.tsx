@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline'
 import './Navbar.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import menuItems from './menuItems.json';
 
 
@@ -10,6 +10,8 @@ function classNames(...classes: any[]) {
 }
 
 const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex">
       <Disclosure as="nav" className="bg-gray-800 flex flex-col">
@@ -40,9 +42,10 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
           <div className="mt-4 flex flex-col items-center space-y-4 pb-4">
             <button
               type="button"
+              onClick={() => navigate('/logout')}
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              <span className="sr-only">Cerrar sesión</span>
+              <span className="sr-only" >Cerrar sesión</span>
               <ArrowLeftEndOnRectangleIcon aria-hidden="true" className="h-6 w-6"/>
             </button>
           </div>
