@@ -1,6 +1,8 @@
 import { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar"
-import './Dashboard.css';
+import Navbar from "../../components/Navbar/Navbar";
+import "./Dashboard.css";
+import SearchGame from "../../components/SearchGame/SearchGame";
+
 
 const Dashboard = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>("");
@@ -11,12 +13,14 @@ const Dashboard = () => {
 
   return (
     <>
-    <div className="container-dashboard">
-      <Navbar onMenuClick={handleMenuClick} />
-      <div>{selectedMenuItem}</div>
-    </div>
+      <div className="container-dashboard">
+        <Navbar onMenuClick={handleMenuClick} />
+        <section className="container-selected-page">
+          {selectedMenuItem === "Add" && <SearchGame />}
+        </section>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

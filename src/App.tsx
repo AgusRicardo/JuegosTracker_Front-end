@@ -46,6 +46,12 @@ function App() {
               PrivateRoute({children: <Dashboard />, user: user})
             } 
           />
+          <Route 
+            path="/dashboard/*" 
+            element={
+              PrivateRoute({children: <Dashboard />, user: user})
+            } 
+          />
         </Routes>
       </BrowserRouter>
     </>
