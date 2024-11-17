@@ -26,7 +26,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
                   className={({ isActive }) =>
                     classNames(
                       isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'flex justify-center items-center rounded-md px-3 py-2 text-sm font-medium'
+                      'flex justify-center items-center rounded-md px-2 py-2 text-sm font-medium'
                     )
                   }
                 >
