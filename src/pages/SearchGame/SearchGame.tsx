@@ -16,7 +16,6 @@ const SearchGame = () => {
     setLoading(true); 
     try {
       const response = await searchGame<{ results: any[] }>(searchQuery);
-      console.log("Resultados de búsqueda:", response.data.results);
       setSearchResults(response.data.results);
     } catch (error) {
       console.error("Error realizando la búsqueda:", error);
@@ -60,7 +59,8 @@ const SearchGame = () => {
             type="search"
             id="default-search"
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
+            placeholder="Buscar juegos..."
+            autoComplete="off"
             value={searchQuery}
             onChange={handleInputChange}
             required
@@ -81,18 +81,18 @@ const SearchGame = () => {
       )}
 
       {!loading && searchResults.length > 0 && (
-        <div className="results-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 container-search-card">
+        <div className="results-container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-6">
           {searchResults.map((result, index) => (
             <div
               key={index}
-              className="card bg-white rounded-lg shadow-md p-4 dark:bg-gray-800 dark:text-white"
+              className="card bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white container-search-card"
               onClick={() => handleResultClick(result)}
             >
               {result.short_screenshots && result.short_screenshots[0]?.image ? (
                 <img
                   src={result.short_screenshots[0].image}
                   alt={`${result.name} screenshot`}
-                  className="w-full h-40 object-cover rounded-md mb-4"
+                  className="w-full h-40 object-cover rounded-md"
                 />
               ) : (
                 <div className="w-full h-40 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
@@ -100,20 +100,22 @@ const SearchGame = () => {
                 </div>
               )}
 
-              <h3 className="text-lg font-semibold mb-2">{result.name}</h3>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold mb-2">{result.name}</h3>
 
-              {result.stores && result.stores.length > 0 ? (
-                <div>
-                  <h4 className="text-sm font-medium mb-1">Tiendas:</h4>
-                  <ul className="text-sm list-disc list-inside">
-                    {result.stores.map((store: any, idx: number) => (
-                      <li key={idx}>{store.store.name}</li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500">No disponible en tiendas</p>
-              )}
+                {result.stores && result.stores.length > 0 ? (
+                  <div>
+                    <h4 className="text-sm font-medium mb-1">Tiendas:</h4>
+                    <ul className="text-sm list-disc list-inside">
+                      {result.stores.map((store: any, idx: number) => (
+                        <li key={idx}>{store.store.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">No disponible en tiendas</p>
+                )}
+              </div>
             </div>
           ))}
         </div>

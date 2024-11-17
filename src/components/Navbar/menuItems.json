@@ -6,5 +6,5 @@
   { "name": "Gog", "href": "/dashboard/gog-com", "img": "https://upload.wikimedia.org/wikipedia/commons/d/de/GOG.com_Logo.png", "current": false },
   { "name": "Prime Gaming", "href": "/dashboard/prime-gaming", "img": "https://img.icons8.com/fluent/600/000000/prime-gaming.png", "current": false },
   { "name": "Itch", "href": "/dashboard/itch", "img": "https://static-00.iconduck.com/assets.00/itch-io-icon-2048x2048-6n1nulpw.png", "current": false },
-  { "name": "Add", "href": "/dashboard/addGame", "img": "https://cdn-icons-png.flaticon.com/512/1828/1828926.png", "current": false }
+  { "name": "SearchGame", "href": "/dashboard/searchGame", "img": "https://cdn-icons-png.flaticon.com/512/1828/1828926.png", "current": false }
 ]

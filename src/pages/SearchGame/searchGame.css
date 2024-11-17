@@ -1,0 +1,7 @@
+.container-search-card{
+  cursor: pointer;
+}
+.container-search-card:hover{
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
