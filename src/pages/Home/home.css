@@ -1,0 +1,5 @@
+.cabecera-home{
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}

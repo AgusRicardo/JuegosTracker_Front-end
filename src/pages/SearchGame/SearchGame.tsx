@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { searchGame } from "../../services/rawg.services";
 import "./searchGame.css";
+import SaveGame from "../SaveGame/SaveGame";
 
 const SearchGame = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false); 
+  const [selectedGame, setSelectedGame] = useState<any | null>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -25,8 +27,12 @@ const SearchGame = () => {
   };
 
   const handleResultClick = (result: any) => {
-    console.log("Elemento seleccionado:", result);
+    setSelectedGame(result); 
   };
+
+  if (selectedGame) {
+    return <SaveGame game={selectedGame} />;
+  }
 
   return (
     <div>
