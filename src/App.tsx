@@ -11,19 +11,26 @@ import Logout from './pages/Auth/Logout/Logout';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { auth } from './config/firebase';
+import PublicRoute from './routes/PublicRoutes';
 
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       
       if (user) {
         setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
         return;
       }
       setUser(null);
+      localStorage.removeItem("user");
     });
     return () => unsubscribe();
   }, [])
@@ -34,24 +41,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Rutas públicas */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/*" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
+          <Route path="/login" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
+          <Route path="/signUp" element={<PublicRoute user={user}>{<SignUp />}</PublicRoute>} />
+          
           <Route path="/logout" element={<Logout />} />
-          <Route path="/*" element={<Login />} />
 
           {/* Rutas privadas */}
-          <Route 
-            path="/dashboard" 
-            element={
-              PrivateRoute({children: <Dashboard />, user: user})
-            } 
-          />
-          <Route 
-            path="/dashboard/*" 
-            element={
-              PrivateRoute({children: <Dashboard />, user: user})
-            } 
-          />
+          <Route path="/dashboard" element={PrivateRoute({children: <Dashboard />, user: user})} />
+          <Route path="/dashboard/*" element={PrivateRoute({children: <Dashboard />, user: user})} />
         </Routes>
       </BrowserRouter>
     </>
