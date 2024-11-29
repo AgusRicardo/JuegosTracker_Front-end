@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CreateGame } from '../interfaces/createGame.types';
 
 const user = localStorage.getItem('user');
 if (!user) {
@@ -24,6 +25,22 @@ export const getGames = async (platform?: string) => {
     return response.data;
   } catch (error) {
     console.error('Error al obtener los juegos:', error);
+    throw error;
+  }
+};
+
+export const saveGame = async (newGame: CreateGame) => {  
+  try {
+    newGame.userId = uid;
+    const response = await axios.post(`${URL}games/createGame`, newGame, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error al guardar el juego:', error);
     throw error;
   }
 };
