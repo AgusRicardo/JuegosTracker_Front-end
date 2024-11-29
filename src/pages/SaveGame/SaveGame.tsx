@@ -1,17 +1,39 @@
 import { useState } from "react";
 import { AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
+import { CreateGame } from "../../interfaces/createGame.types";
+import { Store } from "../../interfaces/store.types";
+import { saveGame } from "../../services/public.services";
 
 const SaveGame = ({ game }: { game: any }) => {
-  console.log(game);
-  
-  const [selectedStore, setSelectedStore] = useState<string | null>(null);
+  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
 
 
-  const handleStoreSelect = (storeName: string) => {
-    if (selectedStore === storeName) {
+  const handleStoreSelect = (store: Store) => {
+    if (selectedStore?.id === store.id) {
       setSelectedStore(null);
     } else {
-      setSelectedStore(storeName);
+      setSelectedStore(store);
+    }
+  };
+
+  const handleSaveGame = async () => {
+    if (!selectedStore) {
+      console.error("No se ha seleccionado ninguna tienda");
+      return;
+    }
+
+    const newGame: CreateGame = {
+      name: game.name,
+      img_url: game.short_screenshots?.[0]?.image || "Sin imagen",
+      platform_id: selectedStore?.id,
+      category_id: game.genres[0].id,
+    };
+
+    try {
+      const savedGame = await saveGame(newGame);
+      console.log("Juego guardado exitosamente:", savedGame);
+    } catch (error) {
+      console.error("Error al guardar el juego:", error);
     }
   };
 
@@ -52,7 +74,7 @@ const SaveGame = ({ game }: { game: any }) => {
               {game.stores.map((store: any, idx: number) => (
                 <button
                   key={idx}
-                  onClick={() => handleStoreSelect(store.store.name)}
+                  onClick={() => handleStoreSelect({ id: store.store.id, name: store.store.name })}
                   className={`mr-1 mt-1 px-4 py-2 text-sm font-medium rounded-lg focus:outline-none 
                     ${Object.values(AvailableStoresEnum).includes(store.store.name)
                       ? selectedStore === store.store.name
@@ -72,7 +94,7 @@ const SaveGame = ({ game }: { game: any }) => {
         )}
 
         <button
-          onClick={() => console.log("Juego guardado")}
+          onClick={handleSaveGame}
           disabled={!selectedStore}
           className={`w-full mt-4 py-2 rounded-lg text-white font-medium 
             ${selectedStore ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300 cursor-not-allowed"}`}
