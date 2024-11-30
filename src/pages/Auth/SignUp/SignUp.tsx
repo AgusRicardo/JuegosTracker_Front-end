@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { auth } from '../../../config/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 const SignUp = () => {
   const [email, setemail] = useState<string>("")
@@ -20,9 +21,11 @@ const SignUp = () => {
   const handleSignUp = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
+      toast.success("Registro exitoso");
       navigate('/login')
     } catch (error) {
-      console.error(error)
+      toast.error("Error al registrarse");
+      console.log(error);
     }
   }
   return (
@@ -43,6 +46,7 @@ const SignUp = () => {
           Sign Up
       </button>
     </div>
+    <Toaster position="bottom-left" reverseOrder={true} />
     </>
   )
 }

@@ -15,7 +15,16 @@ export const searchGame = async <T>(
       throw new Error(data.message || 'Error en la consulta');
     }
 
-    return { data, status: response.status };
+    
+    const filteredAndSortedResults = data.results
+      .sort((a: any, b: any) => b.metacritic - a.metacritic);
+
+    const sortedData = {
+      ...data,
+      results: filteredAndSortedResults,
+    };
+
+    return { data: sortedData, status: response.status };
   } catch (error: any) {
     throw new Error(error.message || 'Error al procesar la solicitud');
   }
