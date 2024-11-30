@@ -44,7 +44,7 @@ const EpicGames = () => {
                   <img
                     alt={product.game}
                     src={product.img}
-                    className="aspect-square w-full rounded-lg bg-gray-200 object-cover xl:aspect-[7/8]"
+                    className="aspect-square w-full rounded-lg bg-gray-200 object-cover"
                   />
                   <h3 className="mt-4 text-sm text-gray-700">{product.game}</h3>
                   <div className="flex justify-end">

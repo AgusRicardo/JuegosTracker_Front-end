@@ -91,9 +91,22 @@ const SearchGame = () => {
           {searchResults.map((result, index) => (
             <div
               key={index}
-              className="card bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white container-search-card"
+              className="relative card bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white container-search-card"
               onClick={() => handleResultClick(result)}
             >
+              {result.metacritic !== null && (
+                <div
+                  className={`absolute top-2 right-2 text-white text-xs font-bold py-1 px-2 rounded ${
+                    result.metacritic >= 75
+                      ? 'bg-green-500'
+                      : result.metacritic >= 50
+                      ? 'bg-yellow-500'
+                      : 'bg-red-500'
+                  }`}
+                >
+                  {result.metacritic}
+                </div>
+              )}
               {result.short_screenshots && result.short_screenshots[0]?.image ? (
                 <img
                   src={result.short_screenshots[0].image}

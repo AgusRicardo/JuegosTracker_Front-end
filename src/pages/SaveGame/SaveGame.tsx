@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
+import { AvailableStoreIds, AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
 import { CreateGame } from "../../interfaces/createGame.types";
 import { Store } from "../../interfaces/store.types";
 import { saveGame } from "../../services/public.services";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SaveGame = ({ game }: { game: any }) => {
   const [selectedStore, setSelectedStore] = useState<Store | null>(null);
-
+  const navigate = useNavigate();
 
   const handleStoreSelect = (store: Store) => {
-    if (selectedStore?.id === store.id) {
+    const storeId = AvailableStoreIds[store.name as AvailableStoresEnum];
+    if (selectedStore?.name === store.name) {
       setSelectedStore(null);
     } else {
-      setSelectedStore(store);
+      setSelectedStore({ id: storeId, name: store.name });
     }
   };
 
@@ -30,10 +33,12 @@ const SaveGame = ({ game }: { game: any }) => {
     };
 
     try {
-      const savedGame = await saveGame(newGame);
-      console.log("Juego guardado exitosamente:", savedGame);
+      await saveGame(newGame);
+      toast.success("Juego guardado exitosamente");
+      navigate("/");
     } catch (error) {
-      console.error("Error al guardar el juego:", error);
+      toast.error("Error al guardar el juego");
+      console.log(error);
     }
   };
 
@@ -102,6 +107,7 @@ const SaveGame = ({ game }: { game: any }) => {
           Guardar Juego
         </button>
       </div>
+      <Toaster position="bottom-left" reverseOrder={true} />
     </div>
   );
 };
