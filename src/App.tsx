@@ -13,23 +13,10 @@ import { useEffect, useState } from 'react';
 import { auth } from './config/firebase';
 import PublicRoute from './routes/PublicRoutes';
 
-const SESSION_DURATION = 2 * 60 * 60 * 1000;
-
 function App() {
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
-    const sessionStart = localStorage.getItem('sessionStart');
-    if (storedUser && sessionStart) {
-      const now = new Date().getTime();
-
-      if (now - parseInt(sessionStart) > SESSION_DURATION) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('sessionStart');
-        return null;
-      }
-      return JSON.parse(storedUser);
-    }
-    return null;
+    return storedUser ? JSON.parse(storedUser) : null;
   });
 
   useEffect(() => {
