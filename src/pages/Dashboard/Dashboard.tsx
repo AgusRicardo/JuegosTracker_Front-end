@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import "./Dashboard.css";
+import "./dashboard.css";
 import Steam from "../Steam/Steam";
 import EpicGames from "../EpicGames/EpicGames";
 import Xbox from "../Xbox/Xbox";

@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline'
-import './Navbar.css';
+import './navbar.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import menuItems from './menuItems.json';
 
