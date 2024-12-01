@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CreateGame } from '../interfaces/createGame.types';
 import { DeleteGame } from '../interfaces/deleteGame.types';
 
-const URL = `http://localhost:5432/`;
+const URL = `https://juegostracker-back-end.onrender.com/`;
 
 export const getGames = async (platform?: string) => {
   try {
