@@ -19,9 +19,6 @@ const Home = () => {
         setIsLoading(true);
         const data = await getEstadistics();
         setEstadistics(data); 
-        console.log(data);
-        console.log(estadistics);
-        
       } catch (err) {
         console.log('Error al obtener las estadísticas', err); 
       } finally {

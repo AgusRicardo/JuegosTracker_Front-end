@@ -67,9 +67,7 @@ export const deleteGame = async (game: DeleteGame) => {
   }
 };
 
-export const getEstadistics = async () => {
-  console.log('llega');
-  
+export const getEstadistics = async () => {  
   try {
     const user = localStorage.getItem('user');
     const { uid } = JSON.parse(user || '{}');
