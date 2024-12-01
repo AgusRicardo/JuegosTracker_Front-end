@@ -1,28 +1,43 @@
 import { useEffect, useState } from "react";
 import { Game } from "../../interfaces/game.types";
 import { AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
-import { getGames } from "../../services/public.services";
+import { deleteGame, getGames } from "../../services/public.services";
 import { Loading } from "../../components/Loading/Loading";
+import { DeleteGame } from "../../interfaces/deleteGame.types";
 
 const Gog = () => {
   const [games, setGames] = useState<Game[]>([]); 
   const [isLoading, setIsLoading] = useState<boolean>(true); 
 
+  const fetchGames = async () => {
+    setIsLoading(true);
+    try {
+      const gamesData = await getGames(AvailableStoresEnum.GOG);
+      setGames(gamesData);
+    } catch (error) {
+      console.error("Error al cargar los juegos:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchGames = async () => {
-      setIsLoading(true); 
-      try {
-        const gamesData = await getGames(AvailableStoresEnum.GOG);
-        setGames(gamesData);
-      } catch (error) {
-        console.error("Error al cargar los juegos:", error);
-      } finally {
-        setIsLoading(false); 
-      }
-    };
-  
     fetchGames();
   }, []);
+
+  const handleDelete = async (gameId: number) => {
+    try {
+      const game: DeleteGame = {
+        gameId: gameId,
+      };
+
+      await deleteGame(game); 
+      await fetchGames();
+    } catch (error: any) {
+      console.log(error.response?.data?.error || 'Error al borrar el juego. Intenta nuevamente.');
+    }
+  };
+
   return (
     <>
       <div className="">
@@ -48,7 +63,10 @@ const Gog = () => {
                   />
                   <h3 className="mt-4 text-sm text-gray-700">{product.game}</h3>
                   <div className="flex justify-end">
-                    <button type="button" className="flex items-center justify-center bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none">
+                    <button 
+                      type="button" 
+                      onClick={() => handleDelete(product.game_id)}
+                      className="flex items-center justify-center bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none">
                       Borrar
                     </button>
                   </div>
