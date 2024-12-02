@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const SaveGame = ({ game }: { game: any }) => {
   const [selectedStore, setSelectedStore] = useState<Store | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
 
   const handleStoreSelect = (store: Store) => {
@@ -33,9 +34,12 @@ const SaveGame = ({ game }: { game: any }) => {
     };
 
     try {
+      setIsSaving(true);
       await saveGame(newGame);
       toast.success("Juego guardado exitosamente");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       toast.error("Error al guardar el juego");
       console.log(error);
@@ -78,19 +82,21 @@ const SaveGame = ({ game }: { game: any }) => {
             <div className="gap-2 mt-2">
               {game.stores.map((store: any, idx: number) => (
                 <button
-                  key={idx}
-                  onClick={() => handleStoreSelect({ id: store.store.id, name: store.store.name })}
-                  className={`mr-1 mt-1 px-4 py-2 text-sm font-medium rounded-lg focus:outline-none 
-                    ${Object.values(AvailableStoresEnum).includes(store.store.name)
-                      ? selectedStore === store.store.name
+                key={idx}
+                onClick={() => handleStoreSelect({ id: store.store.id, name: store.store.name })}
+                className={`mr-1 mt-1 px-4 py-2 text-sm font-medium rounded-lg focus:outline-none 
+                  ${
+                    Object.values(AvailableStoresEnum).includes(store.store.name)
+                      ? selectedStore?.name === store.store.name
                         ? "bg-green-200 text-black"
                         : "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-not-allowed"
-                    }`}
-                  disabled={!Object.values(AvailableStoresEnum).includes(store.store.name)}
-                >
-                  {store.store.name}
-                </button>
+                  }`}
+                disabled={!Object.values(AvailableStoresEnum).includes(store.store.name)}
+              >
+                {store.store.name}
+              </button>
+
               ))}
             </div>
           </div>
@@ -100,11 +106,11 @@ const SaveGame = ({ game }: { game: any }) => {
 
         <button
           onClick={handleSaveGame}
-          disabled={!selectedStore}
+          disabled={isSaving || !selectedStore}
           className={`w-full mt-4 py-2 rounded-lg text-white font-medium 
-            ${selectedStore ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300 cursor-not-allowed"}`}
+            ${isSaving || !selectedStore ? "bg-gray-300 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
         >
-          Guardar Juego
+          {isSaving ? "Guardando..." : "Guardar Juego"}
         </button>
       </div>
       <Toaster position="bottom-left" reverseOrder={true} />
