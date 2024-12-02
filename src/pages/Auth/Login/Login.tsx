@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../../config/firebase";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [email, setemail] = useState<string>("")
@@ -22,6 +23,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/dashboard')
     } catch (error) {
+      toast.error("Error al iniciar sesión");
       console.error(error)
     }
   }
@@ -56,7 +58,7 @@ const Login = () => {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                Password
+                Contraseña
               </label>
             </div>
             <div className="mt-2">
@@ -75,7 +77,7 @@ const Login = () => {
             className="font-semibold text-indigo-600 hover:text-indigo-500"
             onClick={() => navigate('/signUp')}
             >
-              Create new account
+              Crear una nueva cuenta
             </a>
 
           <div>
@@ -84,11 +86,12 @@ const Login = () => {
               onClick={handleSignUp}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+              Iniciar sesión
             </button>
           </div>
         </form>
       </div>
+      <Toaster position="bottom-left" reverseOrder={true} />
     </div>
   </>
   )
