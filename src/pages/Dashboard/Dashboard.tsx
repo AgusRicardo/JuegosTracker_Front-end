@@ -11,7 +11,7 @@ import Home from "../Home/Home";
 
 
 const Dashboard = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string>("");
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string>("Home");
 
   const handleMenuClick = (item: string) => {
     setSelectedMenuItem(item);
