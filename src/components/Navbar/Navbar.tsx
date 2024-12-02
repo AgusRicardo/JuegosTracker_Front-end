@@ -16,7 +16,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
     <div className="min-h-screen flex">
       <Disclosure as="nav" className="bg-gray-800 flex flex-col">
         <div className="flex flex-col h-full">
-          <div className="flex-grow px-2 py-2">
+          <div className="flex-grow px-3 py-2">
             <div className="flex flex-col space-y-1">
               {menuItems.map((item) => (
                 <NavLink 
@@ -26,7 +26,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
                   className={({ isActive }) =>
                     classNames(
                       isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'flex justify-center items-center rounded-md px-2 py-2 text-sm font-medium'
+                      'flex justify-center items-center rounded-md py-2 text-sm font-medium'
                     )
                   }
                 >
@@ -43,7 +43,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
             <button
               type="button"
               onClick={() => navigate('/logout')}
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <span className="sr-only" >Cerrar sesión</span>
               <ArrowLeftEndOnRectangleIcon aria-hidden="true" className="h-6 w-6"/>
