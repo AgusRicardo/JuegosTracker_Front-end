@@ -4,10 +4,14 @@ import { AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
 import { deleteGame, getGames } from "../../services/public.services";
 import { Loading } from "../../components/Loading/Loading";
 import { DeleteGame } from "../../interfaces/deleteGame.types";
+import Modal from "../../Helpers/Modals/Modal";
+import toast, { Toaster } from "react-hot-toast";
 
 const EpicGames = () => {
-  const [games, setGames] = useState<Game[]>([]); 
-  const [isLoading, setIsLoading] = useState<boolean>(true); 
+  const [games, setGames] = useState<Game[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
 
   const fetchGames = async () => {
     setIsLoading(true);
@@ -25,29 +29,42 @@ const EpicGames = () => {
     fetchGames();
   }, []);
 
-  const handleDelete = async (gameId: number) => {
+  const handleDelete = async () => {
+    if (selectedGameId === null) return;
+
     try {
       const game: DeleteGame = {
-        gameId: gameId,
+        gameId: selectedGameId,
       };
 
-      await deleteGame(game); 
+      await deleteGame(game);
       await fetchGames();
+      toast.success("Se eliminó el juego correctamente");
     } catch (error: any) {
-      console.log(error.response?.data?.error || 'Error al borrar el juego. Intenta nuevamente.');
+      toast.error("Error al borrar el juego. Intenta nuevamente.");
+      console.log(error.response?.data?.error || "Error al borrar el juego. Intenta nuevamente.");
+    } finally {
+      setModalOpen(false);
+      setSelectedGameId(null); 
     }
   };
+
+  const openModal = (gameId: number) => {
+    setSelectedGameId(gameId);
+    setModalOpen(true);
+  };
+
   return (
     <>
       <div className="">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="sr-only">Products</h2>
-  
+
           {isLoading ? (
             <div className="flex justify-center items-center">
               <Loading />
             </div>
-          ) : games.length === 0 ? ( 
+          ) : games.length === 0 ? (
             <div className="text-center">
               <p className="text-lg font-medium text-gray-700">No se encontraron juegos.</p>
             </div>
@@ -62,10 +79,11 @@ const EpicGames = () => {
                   />
                   <h3 className="mt-4 text-sm text-gray-700">{product.game}</h3>
                   <div className="flex justify-end">
-                    <button 
-                      type="button" 
-                      onClick={() => handleDelete(product.game_id)}
-                      className="flex items-center justify-center bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none">
+                    <button
+                      type="button"
+                      onClick={() => openModal(product.game_id)}
+                      className="flex items-center justify-center bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none"
+                    >
                       Borrar
                     </button>
                   </div>
@@ -75,8 +93,19 @@ const EpicGames = () => {
           )}
         </div>
       </div>
-    </>
-  )
-}
 
-export default EpicGames
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Eliminar juego"
+        message="¿Estás seguro de que deseas eliminar este juego? Esta acción no se puede deshacer."
+        onConfirm={handleDelete}
+        confirmText="Eliminar"
+        cancelText="Cancelar"
+      />
+      <Toaster position="bottom-left" reverseOrder={true} />
+    </>
+  );
+};
+
+export default EpicGames;
