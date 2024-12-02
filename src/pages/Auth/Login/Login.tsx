@@ -1,41 +1,55 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../config/firebase";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Loading } from "../../../components/Loading/Loading";
 
 const Login = () => {
-  const [email, setemail] = useState<string>("")
-  const [password, setpassword] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false); 
+  const [email, setemail] = useState<string>("");
+  const [password, setpassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setemail(e.target.value)
-  }
+    setemail(e.target.value);
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setpassword(e.target.value)
-  }
+    setpassword(e.target.value);
+  };
 
   const handleSignUp = async () => {
     try {
-      setLoading(true); 
-      await signInWithEmailAndPassword(auth, email, password)
-      navigate('/dashboard/home')
-    } catch (error) {
-      toast.error("Error al iniciar sesión");
-      console.error(error)
-    } finally {
-      setLoading(false); 
-    }
-  }
+      await signInWithEmailAndPassword(auth, email, password);
+      setLoading(true);
+      navigate("/dashboard/home");
+    } catch (error: any) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      
+      if (errorCode === 'auth/user-not-found') {
+        toast.error("El usuario no existe. Por favor verifica el correo.");
+        
+      } else if (errorCode === 'auth/wrong-password') {
+        toast.error("Contraseña incorrecta. Intenta nuevamente.");
+      } else if (errorCode === 'auth/too-many-requests') {
+        toast.error("Demasiados intentos fallidos. Intenta nuevamente más tarde.");
+      } else if (errorCode === 'auth/invalid-email') {
+        toast.error("El formato del email es incorrecto.");
+      } else if (errorCode === 'auth/invalid-credential'){
+        toast.error("Credenciales inválidas. Intenta nuevamente.");
+      } else {
+        toast.error("Error al iniciar sesión: " + errorMessage);
+      }
+    } 
+  };
+
   return (
     <>
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      {loading ? (
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        {loading ? (
           <div className="flex justify-center items-center">
             <Loading />
           </div>
@@ -50,8 +64,11 @@ const Login = () => {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <form action="#" method="POST" className="space-y-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                    Email 
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Email
                   </label>
                   <div className="mt-2">
                     <input
@@ -68,7 +85,10 @@ const Login = () => {
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
                       Contraseña
                     </label>
                   </div>
@@ -84,12 +104,13 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                  <a href="#" 
+                <a
+                  href="#"
                   className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  onClick={() => navigate('/signUp')}
-                  >
-                    Crear una nueva cuenta
-                  </a>
+                  onClick={() => navigate("/signUp")}
+                >
+                  Crear una nueva cuenta
+                </a>
 
                 <div>
                   <button
@@ -105,9 +126,9 @@ const Login = () => {
             <Toaster position="bottom-left" reverseOrder={true} />
           </div>
         )}
-    </div>
-  </>
-  )
-}
+      </div>
+    </>
+  );
+};
 
-export default Login
+export default Login;
