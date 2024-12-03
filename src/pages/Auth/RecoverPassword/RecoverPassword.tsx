@@ -44,13 +44,20 @@ export const RecoverPassword = () => {
 
   return (
     <>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="navbar">
+        <img
+          className="navbarLogo"
+          src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/gamepad-512.png"
+          alt="Juegos tracker"
+        />
+      </div>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 py-5">
             Recuperar contraseña
           </h2>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 py-2">
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
             Email
           </label>
@@ -63,28 +70,38 @@ export const RecoverPassword = () => {
           />
         </div>
 
-        <div className="py-3">
+        <div className="py-2">
           <button
             type="button"
             onClick={handleRecoverPassword}
             disabled={loading}
-            className={`mt-2 flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm ${
-              loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-500"
-            }`}
+            className={`relative inline-flex items-center justify-center p-0.5 w-auto overflow-hidden text-sm font-medium text-gray-900 rounded-md group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800 ${loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-500"
+              }`}
           >
-            {loading ? "Enviando..." : "Recuperar"}
+            <span className="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0">
+              {loading ? "Enviando..." : "Recuperar"}
+            </span>
           </button>
-
+        </div>
+        <div className="py-1">
           <button
             type="button"
             onClick={handleReturnLogin}
-            className="mt-2 flex w-full justify-center rounded-md bg-indigo-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="relative inline-flex items-center justify-center p-0.5 w-auto overflow-hidden text-sm font-medium text-gray-900 rounded-md group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
           >
-            Volver
+            <span className="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0">
+              Volver
+            </span>
           </button>
         </div>
       </div>
       <Toaster position="bottom-left" reverseOrder={true} />
+      <footer className="footer">
+        <a href="https://github.com/AgusRicardo/juegosTracker_Front-end" target="_blank" rel="noopener noreferrer" className="footerIcon">
+          <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" />
+        </a>
+        <p className="text-gray-900">MDW | Agustin Ricardo, Gisela Dieguez</p>
+      </footer>
     </>
   );
 };
