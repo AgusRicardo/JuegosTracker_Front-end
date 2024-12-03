@@ -29,22 +29,22 @@ const Login = () => {
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      
+
       if (errorCode === 'auth/user-not-found') {
         toast.error("El usuario no existe. Por favor verifica el correo.");
-        
+
       } else if (errorCode === 'auth/wrong-password') {
         toast.error("Contraseña incorrecta. Intenta nuevamente.");
       } else if (errorCode === 'auth/too-many-requests') {
         toast.error("Demasiados intentos fallidos. Intenta nuevamente más tarde.");
       } else if (errorCode === 'auth/invalid-email') {
         toast.error("El formato del email es incorrecto.");
-      } else if (errorCode === 'auth/invalid-credential'){
+      } else if (errorCode === 'auth/invalid-credential') {
         toast.error("Credenciales inválidas. Intenta nuevamente.");
       } else {
         toast.error("Error al iniciar sesión: " + errorMessage);
       }
-    } 
+    }
   };
 
   return (
@@ -63,7 +63,7 @@ const Login = () => {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form action="#" method="POST" className="space-y-6">
+              <form action="#" method="POST" className="space-y-5.5">
                 <div>
                   <label
                     htmlFor="email"
@@ -71,7 +71,7 @@ const Login = () => {
                   >
                     Email
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="email"
@@ -83,8 +83,7 @@ const Login = () => {
                     />
                   </div>
                 </div>
-
-                <div>
+                <div className="pt-3">
                   <div className="flex items-center justify-between">
                     <label
                       htmlFor="password"
@@ -93,7 +92,7 @@ const Login = () => {
                       Contraseña
                     </label>
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       id="password"
                       name="password"
@@ -105,28 +104,29 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                <div className="container-btn-footer-login mt-2">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500" onClick={() => navigate("/recoverPassword")}>
+                <div className="container-btn-footer-login mt-2 pt-3">
+                  <a href="#" className="font-semibold text-purple-600 hover:text-indigo-500" onClick={() => navigate("/recoverPassword")}>
                     Olvidé mi contraseña
                   </a>
                 </div>
                 <div className="container-btn-footer-login">
                   <a
                     href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-purple-600 hover:text-indigo-500"
                     onClick={() => navigate("/signUp")}
                   >
                     Crear una nueva cuenta
                   </a>
                 </div>
 
-                <div>
+                <div className="py-3">
                   <button
                     type="button"
                     onClick={handleSignUp}
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Iniciar sesión
+                    className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                      Iniciar sesión
+                    </span>
                   </button>
                 </div>
               </form>

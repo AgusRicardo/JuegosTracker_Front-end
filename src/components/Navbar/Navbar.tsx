@@ -14,7 +14,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
 
   return (
     <div className="min-h-screen flex">
-      <Disclosure as="nav" className="bg-gray-800 flex flex-col">
+      <Disclosure as="nav" className="bg-gray-900 flex flex-col">
         <div className="flex flex-col h-full">
           <div className="flex-grow px-3 py-2">
             <div className="flex flex-col space-y-1">
