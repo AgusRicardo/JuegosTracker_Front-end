@@ -16,7 +16,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/login');
+      navigate('/homepage');
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
       toast.error('Hubo un error al cerrar sesión. Intenta nuevamente.');

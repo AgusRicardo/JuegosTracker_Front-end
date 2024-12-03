@@ -1,7 +1,8 @@
 import './App.css';
 import { BrowserRouter,
   Routes,
-  Route
+  Route,
+  Navigate
   } from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoutes';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -12,6 +13,7 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { auth } from './config/firebase';
 import PublicRoute from './routes/PublicRoutes';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
   const [user, setUser] = useState<User | null>(() => {
@@ -38,15 +40,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Rutas públicas */}
-          <Route path="/*" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
+          <Route path="/*" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           <Route path="/login" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
           <Route path="/signUp" element={<PublicRoute user={user}>{<SignUp />}</PublicRoute>} />
+          <Route path="/homepage" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           
           <Route path="/logout" element={<Logout />} />
 
           {/* Rutas privadas */}
           <Route path="/dashboard" element={PrivateRoute({children: <Dashboard />, user: user})} />
           <Route path="/dashboard/*" element={PrivateRoute({children: <Dashboard />, user: user})} />
+
+          <Route path="*" element={<Navigate to={user ? "/dashboard" : "/homepage"} />} />
         </Routes>
       </BrowserRouter>
     </>
