@@ -72,9 +72,16 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="navbar">
+        <img
+          className="navbarLogo"
+          src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/gamepad-512.png"
+          alt="Juegos tracker"
+        />
+      </div>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 py-5">
             Registrarse
           </h2>
         </div>
@@ -125,6 +132,12 @@ const SignUp = () => {
 
       </div>
       <Toaster position="bottom-left" reverseOrder={true} />
+      <footer className="footer">
+        <a href="https://github.com/AgusRicardo/juegosTracker_Front-end" target="_blank" rel="noopener noreferrer" className="footerIcon">
+          <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" />
+        </a>
+        <p className="text-gray-900">MDW | Agustin Ricardo, Gisela Dieguez</p>
+      </footer>
     </>
   );
 };

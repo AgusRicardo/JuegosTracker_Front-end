@@ -49,20 +49,27 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-cente">
         {loading ? (
           <div className="flex justify-center items-center">
             <Loading />
           </div>
         ) : (
           <div>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="navbar">
+              <img
+                className="navbarLogo"
+                src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/gamepad-512.png"
+                alt="Juegos tracker"
+              />
+            </div>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm py-5">
               <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Iniciar sesión
               </h2>
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <form action="#" method="POST" className="space-y-5.5">
                 <div>
                   <label
@@ -132,6 +139,12 @@ const Login = () => {
               </form>
             </div>
             <Toaster position="bottom-left" reverseOrder={true} />
+            <footer className="footer">
+                <a href="https://github.com/AgusRicardo/juegosTracker_Front-end" target="_blank" rel="noopener noreferrer" className="footerIcon">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" />
+                </a>
+                <p className="text-gray-900">MDW | Agustin Ricardo, Gisela Dieguez</p>
+            </footer>
           </div>
         )}
       </div>

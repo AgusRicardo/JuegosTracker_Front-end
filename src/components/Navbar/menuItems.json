@@ -1,5 +1,5 @@
 [
-  { "name": "Home", "href": "/dashboard/home", "img": "https://img.icons8.com/?size=100&id=73&format=png&color=FFFFFF", "current": false },
+  { "name": "Home", "href": "/dashboard/home", "img": "https://img.icons8.com/?size=100&id=73&format=png&color=8A8A8A", "current": false },
   { "name": "Steam", "href": "/dashboard/steam", "img": "https://img.icons8.com/?size=100&id=12465&format=png&color=135997", "current": false },
   { "name": "Epic Games", "href": "/dashboard/epic-games", "img": "https://img.icons8.com/?size=100&id=83331&format=png&color=FFFFFF", "current": false },
   { "name": "Xbox", "href": "/dashboard/xbox", "img": "https://img.icons8.com/?size=100&id=12473&format=png&color=28b351", "current": false },
