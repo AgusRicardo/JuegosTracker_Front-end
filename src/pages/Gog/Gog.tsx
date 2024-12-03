@@ -71,13 +71,13 @@ const Gog = () => {
           ) : (
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
               {games.map((product) => (
-                <div key={product.game_id} className="group">
+                <div key={product.game_id} className="group bg-gray-900 p-1 m-0.5 rounded-xl text-white shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)]">
                   <img
                     alt={product.game}
                     src={product.img}
                     className="aspect-square w-full rounded-lg bg-gray-200 object-cover"
                   />
-                  <h3 className="mt-4 text-sm text-gray-700">{product.game}</h3>
+                  <h3 className="mt-4 mb-4 text-sm">{product.game}</h3>
                   <div className="flex justify-end">
                     <button
                       type="button"
