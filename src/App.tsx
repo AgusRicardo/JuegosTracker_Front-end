@@ -51,7 +51,7 @@ function App() {
           <Route path="/dashboard" element={PrivateRoute({children: <Dashboard />, user: user})} />
           <Route path="/dashboard/*" element={PrivateRoute({children: <Dashboard />, user: user})} />
 
-          <Route path="*" element={<Navigate to={user ? "/dashboard" : "/homepage"} />} />
+          <Route path="https://juegos-tracker-front-end.vercel.app/*" element={<Navigate to={user ? "/dashboard" : "/homepage"} />} />
         </Routes>
       </BrowserRouter>
     </>
