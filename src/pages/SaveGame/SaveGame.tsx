@@ -89,7 +89,7 @@ const SaveGame = ({ game }: { game: any }) => {
                     Object.values(AvailableStoresEnum).includes(store.store.name)
                       ? selectedStore?.name === store.store.name
                         ? "bg-green-200 text-black"
-                        : "bg-blue-600 text-white"
+                        : "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm text-center"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-not-allowed"
                   }`}
                 disabled={!Object.values(AvailableStoresEnum).includes(store.store.name)}
@@ -108,7 +108,7 @@ const SaveGame = ({ game }: { game: any }) => {
           onClick={handleSaveGame}
           disabled={isSaving || !selectedStore}
           className={`w-full mt-4 py-2 rounded-lg text-white font-medium 
-            ${isSaving || !selectedStore ? "bg-gray-300 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+            ${isSaving || !selectedStore ? "bg-gray-300 cursor-not-allowed" : "text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm text-center"}`}
         >
           {isSaving ? "Guardando..." : "Guardar Juego"}
         </button>

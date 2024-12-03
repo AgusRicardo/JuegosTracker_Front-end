@@ -99,23 +99,30 @@ const SignUp = () => {
           />
         </div>
 
-        <div className="py-3">
+        <div className="py-2 pt-3">
           <button
             type="submit"
-            className="mt-2 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="relative inline-flex items-center justify-center p-0.5 w-auto overflow-hidden text-sm font-medium text-gray-900 rounded-md group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
             onClick={handleSignUp}
           >
-            Registrarse
-          </button>
-
-          <button
-            type="submit"
-            className="mt-2 flex w-full justify-center rounded-md bg-indigo-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={handleReturnLogin}
-          >
-            Volver
+            <span className="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0">
+              Registrarse
+            </span>
           </button>
         </div>
+        <div className="py-1">
+          <button
+            type="submit"
+            className="relative inline-flex items-center justify-center p-0.5 w-auto overflow-hidden text-sm font-medium text-gray-900 rounded-md group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+            onClick={handleReturnLogin}
+          >
+            <span className="relative px-4 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0">
+              Volver
+            </span>
+          </button>
+        </div>
+
+
       </div>
       <Toaster position="bottom-left" reverseOrder={true} />
     </>
