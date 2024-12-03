@@ -4,7 +4,7 @@ import { auth } from "../../../config/firebase";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Loading } from "../../../components/Loading/Loading";
-import './Login.css';
+import './login.css';
 
 const Login = () => {
   const [email, setemail] = useState<string>("");
