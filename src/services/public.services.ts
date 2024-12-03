@@ -67,6 +67,23 @@ export const deleteGame = async (game: DeleteGame) => {
   }
 };
 
+export const createUser = async (email: string, userId: string) => {
+  try {
+    const response = await axios.post(`${URL}user/insertUser`, { email, userId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error('Error al crear el usuario:', error);
+    throw error;
+  }
+};
+
 export const getEstadistics = async () => {  
   try {
     const user = localStorage.getItem('user');

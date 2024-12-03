@@ -1,30 +1,32 @@
-import React, { useState } from 'react'
-import { auth } from '../../../config/firebase'
-import { createUserWithEmailAndPassword, signOut } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
-import toast, { Toaster } from 'react-hot-toast'
+import React, { useState } from 'react';
+import { auth } from '../../../config/firebase';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { createUser } from '../../../services/public.services';
+
 
 const SignUp = () => {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const navigate = useNavigate()
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
   const validateEmail = (email: string): boolean => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
-  }
+  };
 
   const validatePassword = (password: string): boolean => {
     return password.length > 6;
-  }
+  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleSignUp = async () => {
     if (!validateEmail(email)) {
@@ -38,12 +40,16 @@ const SignUp = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
-      await signOut(auth)
-      toast.success('Registro exitoso')
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = userCredential;
+
+      await createUser(user.email || '', user.uid);
+      toast.success('Registro exitoso');
+
+      await signOut(auth);
       setTimeout(() => {
-        navigate('/login')
-      }, 2000)
+        navigate('/login');
+      }, 2000);
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -57,13 +63,12 @@ const SignUp = () => {
       } else {
         toast.error('Error al registrarse: ' + errorMessage);
       }
-      console.log(error);
     }
-  }
+  };
 
   const handleReturnLogin = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
 
   return (
     <>
@@ -114,7 +119,7 @@ const SignUp = () => {
       </div>
       <Toaster position="bottom-left" reverseOrder={true} />
     </>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
