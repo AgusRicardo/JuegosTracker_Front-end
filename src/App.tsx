@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { auth } from './config/firebase';
 import PublicRoute from './routes/PublicRoutes';
 import HomePage from './pages/HomePage/HomePage';
+import { RecoverPassword } from './pages/Auth/RecoverPassword/RecoverPassword';
 
 function App() {
   const [user, setUser] = useState<User | null>(() => {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/*" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           <Route path="/login" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
           <Route path="/signUp" element={<PublicRoute user={user}>{<SignUp />}</PublicRoute>} />
+          <Route path="/recoverPassword" element={<PublicRoute user={user}>{<RecoverPassword />}</PublicRoute>} />
           <Route path="/homepage" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           
           <Route path="/logout" element={<Logout />} />
