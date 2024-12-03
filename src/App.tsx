@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter,
   Routes,
   Route,
-  Navigate
   } from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoutes';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -40,6 +39,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Rutas públicas */}
+          <Route path="/" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           <Route path="/*" element={<PublicRoute user={user}>{<HomePage />}</PublicRoute>} />
           <Route path="/login" element={<PublicRoute user={user}>{<Login />}</PublicRoute>} />
           <Route path="/signUp" element={<PublicRoute user={user}>{<SignUp />}</PublicRoute>} />
@@ -51,7 +51,6 @@ function App() {
           <Route path="/dashboard" element={PrivateRoute({children: <Dashboard />, user: user})} />
           <Route path="/dashboard/*" element={PrivateRoute({children: <Dashboard />, user: user})} />
 
-          <Route path="https://juegos-tracker-front-end.vercel.app/*" element={<Navigate to={user ? "/dashboard" : "/homepage"} />} />
         </Routes>
       </BrowserRouter>
     </>
