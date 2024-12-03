@@ -4,6 +4,7 @@ import { auth } from "../../../config/firebase";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Loading } from "../../../components/Loading/Loading";
+import './Login.css';
 
 const Login = () => {
   const [email, setemail] = useState<string>("");
@@ -104,13 +105,20 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  onClick={() => navigate("/signUp")}
-                >
-                  Crear una nueva cuenta
-                </a>
+                <div className="container-btn-footer-login mt-2">
+                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500" onClick={() => navigate("/recoverPassword")}>
+                    Olvidé mi contraseña
+                  </a>
+                </div>
+                <div className="container-btn-footer-login">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    onClick={() => navigate("/signUp")}
+                  >
+                    Crear una nueva cuenta
+                  </a>
+                </div>
 
                 <div>
                   <button
