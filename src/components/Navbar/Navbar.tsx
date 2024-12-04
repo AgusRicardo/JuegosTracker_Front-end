@@ -16,7 +16,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
     <div className="min-h-screen flex">
       <Disclosure as="nav" className="bg-gray-900 flex flex-col">
         <div className="flex flex-col h-full">
-          <div className="flex-grow px-3 py-2">
+          <div className="flex-grow px-3 py-4">
             <div className="flex flex-col space-y-1">
               {menuItems.map((item) => (
                 <NavLink 
@@ -33,7 +33,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: (item: string) => void }) => {
                   <img
                     src={item.img}
                     alt={item.name}
-                    className="h-10 w-10 object-cover"
+                    className="h-10 mx-1 w-10 object-cover"
                   />
                 </NavLink>
               ))}

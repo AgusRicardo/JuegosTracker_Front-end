@@ -3,7 +3,7 @@
   { "name": "Steam", "href": "/dashboard/steam", "img": "https://img.icons8.com/?size=100&id=12465&format=png&color=135997", "current": false },
   { "name": "Epic Games", "href": "/dashboard/epic-games", "img": "https://img.icons8.com/?size=100&id=83331&format=png&color=FFFFFF", "current": false },
   { "name": "Xbox", "href": "/dashboard/xbox", "img": "https://img.icons8.com/?size=100&id=12473&format=png&color=28b351", "current": false },
-  { "name": "Gog", "href": "/dashboard/gog-com", "img": "https://img.icons8.com/?size=100&id=23864&format=png&color=000000", "current": false },
-  { "name": "Prime Gaming", "href": "/dashboard/prime-gaming", "img": "https://img.icons8.com/?size=100&id=ERzMWfI6Af4a&format=png&color=8e48ff", "current": false },
-  { "name": "Itch", "href": "/dashboard/itch", "img": "https://img.icons8.com/?size=100&id=aiXjuIlKoLtN&format=png&color=ff284d", "current": false }
+  { "name": "Gog", "href": "/dashboard/gog-com", "img": "https://img.icons8.com/?size=100&id=23861&format=png&color=9C55D4", "current": false },
+  { "name": "Prime Gaming", "href": "/dashboard/prime-gaming", "img": "https://img.icons8.com/?size=100&id=ERzMWfI6Af4a&format=png&color=29B6F6", "current": false },
+  { "name": "Itch", "href": "/dashboard/itch", "img": "https://img.icons8.com/?size=100&id=LncHrkfhSPkY&format=png&color=ff284d", "current": false }
 ]
