@@ -91,7 +91,7 @@ const SearchGame = () => {
           {searchResults.map((result, index) => (
             <div
               key={index}
-              className="group bg-gray-900 p-1 m-0.5 rounded-xl text-white shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)]"
+              className="group bg-gray-900 p-1 m-0.5 rounded-xl text-white min-h-96 shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)]"
               onClick={() => handleResultClick(result)}
             >
               {result.metacritic !== null && (
