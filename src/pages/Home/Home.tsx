@@ -56,20 +56,20 @@ const Home = () => {
                     </button>
                   </div>
                   <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-                    <h2 className="text-center text-base/7 font-semibold text-indigo-600">Juegos Tracker</h2>
-                    <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
+                    <h2 className="text-center text-base/7 font-semibold text-blue-500">Juegos Tracker</h2>
+                    <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight sm:text-5xl">
                       Tus juegos favoritos en un solo lugar
                     </p>
                     <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
                       {estadistics.map((estadistic: any, index: number) => (
-                        <div key={index} className="relative max-lg:row-start-1">
-                          <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                        <div key={index} className="relative bg-gray-900 p-1 m-0.5 rounded-xl text-white shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)]">
+                          <div className="absolute inset-px rounded-lg max-lg:rounded-t-[2rem]"></div>
                           <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-                            <div className="px-5 py-5 sm:px-10 sm:pt-10 flex flex-col justify-center items-center">
-                              <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                            <div className="px-5 py-5 sm:px-10 sm:p-10 flex flex-col justify-center items-center">
+                              <p className="mt-2 text-lg font-medium tracking-tight max-lg:text-center">
                                 {estadistic.plataforma}
                               </p>
-                              <p className="mt-2 text-3xl font-bold text-blue-500 max-lg:text-center">
+                              <p className="mt-2 text-3xl font-bold text-cyan-500 max-lg:text-center">
                                 {estadistic.total_juegos}
                               </p>
                             </div>

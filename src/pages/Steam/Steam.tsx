@@ -6,6 +6,7 @@ import { AvailableStoresEnum } from "../../Helpers/Enums/AvailableStoresEnum";
 import { DeleteGame } from "../../interfaces/deleteGame.types";
 import Modal from "../../Helpers/Modals/Modal";
 import toast, { Toaster } from "react-hot-toast";
+import logo from "./11.png";
 
 const Steam = () => {
   const [games, setGames] = useState<Game[]>([]);
@@ -56,8 +57,13 @@ const Steam = () => {
 
   return (
     <>
+      <header className="bg-gray-900 py-4">
+        <div className="container mx-auto flex justify-center">
+          <img src={logo} alt="Logo" className="h-12 w-auto" />
+        </div>
+      </header>
       <div className="">
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 max-w-full lg:px-8">
           <h2 className="sr-only">Products</h2>
 
           {isLoading ? (
@@ -65,11 +71,11 @@ const Steam = () => {
               <Loading />
             </div>
           ) : games.length === 0 ? (
-            <div className="text-center">
+            <div className="text-center py-5">
               <p className="text-lg font-medium text-gray-700">No se encontraron juegos.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <div className="results-container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-6">
               {games.map((product) => (
                 <div key={product.game_id} className="group bg-gray-900 p-1 m-0.5 rounded-xl text-white shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)]">
                   <img
@@ -77,7 +83,7 @@ const Steam = () => {
                     src={product.img}
                     className="aspect-square w-full rounded-lg bg-gray-200 object-cover"
                   />
-                  <h3 className="mt-4 mb-4 text-sm">{product.game}</h3>
+                  <h3 className="mt-4 mb-4 text-base">{product.game}</h3>
                   <div className="flex justify-end">
                     <button
                       type="button"
